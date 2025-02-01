@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .slide-down {
+            animation: slideDown 0.5s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+    <nav class="flex justify-between items-center p-6">
+        <h1 class="text-3xl font-extrabold">Ace Jonas Inovero</h1>
+        <button id="toggle-menu"
+            class="md:hidden px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-500 transition duration-300">Menu</button>
+        <ul id="nav-links" class="flex space-x-6 md:flex md:space-x-6 hidden md:flex">
+            <li><a href="#home" class="hover:text-gray-400 transition duration-300">Home</a></li>
+            <li><a href="#services" class="hover:text-gray-400 transition duration-300">Services</a></li>
+            <li><a href="#certifications" class="hover:text-gray-400 transition duration-300">Certifications</a></li>
+            <li><a href="#projects" class="hover:text-gray-400 transition duration-300">Projects</a></li>
+            <li><a href="#about" class="hover:text-gray-400 transition duration-300">About Me</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="flex flex-col md:flex-row items-center justify-between p-12">
+        <div class="md:w-1/2">
+            <h2 class="text-5xl font-extrabold leading-tight"><span id="typed"></span></h2>
+            <p class="mt-4 text-gray-400">I am a digital creator offering UI/UX design and development services.</p>
+            <a href="#services"
+                class="mt-6 inline-block px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-500 transition duration-300">My
+                Services →</a>
+        </div>
+        <img src="https://scontent.fcrk9-1.fna.fbcdn.net/v/t39.30808-6/446926216_2596534127200074_5135855521258358184_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGi7ArgMUR6TZhuYH5lkFR3flJzF1O5CN1-UnMXU7kI3f9jHISWRQSbfQ1FULnIIqlCisuY9Tg1MSGz-BqtpGgv&_nc_ohc=3bcOu1yZlMkQ7kNvgH3fTis&_nc_zt=23&_nc_ht=scontent.fcrk9-1.fna&_nc_gid=AUAhOwzW9l1DAzjxxO9MRH2&oh=00_AYAjS7605A4Dqb9gofc5QxxlmQwDvjAyf0FhlP_btrdYkw&oe=67A2F49C"
+            alt="Your Photo" class="w-1/3 rounded-lg shadow-lg mt-6 md:mt-0 animate-fade-in">
+    </header>
+
+    <section id="services" class="p-12">
+        <h2 class="text-4xl font-bold text-center">Services</h2>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-paint-brush text-3xl text-purple-400"></i>
+                <h3 class="text-xl font-semibold mt-4">UI/UX Design</h3>
+                <p class="text-gray-400">Creating stunning interfaces and seamless experiences.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-code text-3xl text-blue-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Web Development</h3>
+                <p class="text-gray-400">Building responsive and high-performance websites.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-bullhorn text-3xl text-yellow-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Digital Marketing</h3>
+                <p class="text-gray-400">Enhancing online presence and brand visibility.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-check-circle text-3xl text-green-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Software Quality Assurance</h3>
+                <p class="text-gray-400">Ensuring the quality and performance of software products.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-tasks text-3xl text-orange-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Project Management</h3>
+                <p class="text-gray-400">Managing projects efficiently from inception to completion.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-mobile-alt text-3xl text-purple-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Mobile Development</h3>
+                <p class="text-gray-400">Creating user-friendly mobile applications for various platforms.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="p-12 bg-gray-800">
+        <h2 class="text-4xl font-bold text-center text-white">Certifications</h2>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-certificate text-3xl text-yellow-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Java Foundations Certificate (2022)</h3>
+                <p class="text-gray-400">Oracle Academy</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-certificate text-3xl text-yellow-400"></i>
+                <h3 class="text-xl font-semibold mt-4">System Administration Certificate (2022)</h3>
+                <p class="text-gray-400">Linux Professional Institute</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-robot text-3xl text-blue-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Robotics Program Completion (2017)</h3>
+                <p class="text-gray-400">The Coding School</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-trophy text-3xl text-green-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Most Commendable Lead Programmer (2022)</h3>
+                <p class="text-gray-400">STI College Novaliches</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-shield-alt text-3xl text-red-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Cyber Security Fundamentals (2024)</h3>
+                <p class="text-gray-400">STI College Novaliches</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-certificate text-3xl text-purple-400"></i>
+                <h3 class="text-xl font-semibold mt-4">SAP Business One (2023)</h3>
+                <p class="text-gray-400">STI College Novaliches</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="p-12">
+        <h2 class="text-4xl font-bold text-center">Projects</h2>
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-laptop-code text-3xl text-green-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Point of Sale System</h3>
+                <p class="text-gray-400">A full-featured POS system with real-time updates and receipt printing.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-calendar-alt text-3xl text-red-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Faculty Scheduler</h3>
+                <p class="text-gray-400">An intelligent scheduling system for university faculty.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-box-open text-3xl text-blue-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Bidding System</h3>
+                <p class="text-gray-400">A secure platform for managing procurement and supplier bids.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-tools text-3xl text-orange-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Bill of Materials System</h3>
+                <p class="text-gray-400">Forecasting the cost and materials needed for various house types, rooms, and
+                    building projects.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-bus text-3xl text-yellow-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Bus Service Tracker</h3>
+                <p class="text-gray-400">A system that tracks and live shows the location of buses along with their
+                    current status.</p>
+            </div>
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                data-aos="fade-up">
+                <i class="fas fa-volume-up text-3xl text-purple-400"></i>
+                <h3 class="text-xl font-semibold mt-4">Batangueno Dictionary System</h3>
+                <p class="text-gray-400">A system that includes text-to-speech and speech-to-text recognition for
+                    Batangueno words.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="p-12 bg-gray-800">
+        <h2 class="text-4xl font-bold text-center text-white">About Me</h2>
+        <div class="mt-8 text-gray-400">
+            <p class="text-center text-xl font-semibold">Ace Jonas Inovero</p>
+            <p class="text-center">San Bartolome, Quezon City | +63 994 009 5141 | acejonas.inovero02@gmail.com</p>
+            <hr class="my-4 border-gray-600">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                    data-aos="fade-up">
+                    <h3 class="text-2xl font-semibold flex items-center">
+                        <i class="fas fa-bullseye text-yellow-400 mr-2"></i> Objective
+                    </h3>
+                    <p>Driven and detail-oriented graduating student in Information Technology, seeking an internship to
+                        leverage my technical expertise, project management skills, and hands-on experience in software
+                        development. I am passionate about contributing to innovative projects while gaining valuable
+                        industry exposure to further develop my professional abilities.</p>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                    data-aos="fade-up">
+                    <h3 class="text-2xl font-semibold flex items-center">
+                        <i class="fas fa-graduation-cap text-blue-400 mr-2"></i> Education
+                    </h3>
+                    <p><strong>Bachelor of Science in Information Technology</strong></p>
+                    <p>STI College Novaliches | Expected Graduation: August 2025</p>
+                    <p><strong>Capstone Project:</strong> STI Faculty Schedule Assigner and Locator: Developed a system
+                        that
+                        automates the scheduling process for faculty members and provides real-time tracking for better
+                        efficiency and accessibility.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                    data-aos="fade-up">
+                    <h3 class="text-2xl font-semibold flex items-center">
+                        <i class="fas fa-cogs text-orange-400 mr-2"></i> Skills
+                    </h3>
+                    <p><strong>Programming:</strong> Proficient in PHP, Python, Java, JavaScript, C#, Node.js</p>
+                    <p><strong>Front-End:</strong> HTML, CSS, Bootstrap, AJAX</p>
+                    <p><strong>Database Management:</strong> MySQL, Firebase, MSSQL, MongoDB</p>
+                    <p><strong>Project Management & QA:</strong> Agile and Scrum methodologies, Sprint Planning, and
+                        Documentation</p>
+                    <p>Test Planning, Automation, Defect Tracking, and Quality Assurance</p>
+                    <p><strong>Tools & Technologies:</strong> REST API, SAP Business One, Figma</p>
+                    <p><strong>System Deployment:</strong> Linux, Windows Server</p>
+                    <p><strong>Soft Skills:</strong> Strong communication and leadership abilities, Effective teamwork
+                        and
+                        problem-solving</p>
+                </div>
+
+                <div class="bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+                    data-aos="fade-up">
+                    <h3 class="text-2xl font-semibold flex items-center">
+                        <i class="fas fa-briefcase text-red-400 mr-2"></i> Experience
+                    </h3>
+                    <p><strong>Freelance Programmer | May 2023 – Present</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Developed web applications and software solutions tailored to client needs, ensuring
+                            scalability, efficiency, and security.</li>
+                        <li>Integrated APIs to streamline processes and enhance application functionality.</li>
+                        <li>Managed database systems, ensuring structured, secure, and optimized data storage solutions.
+                        </li>
+                    </ul>
+                    <p><strong>Project Manager (Capstone Project) | January 2024 – December 2024</strong></p>
+                    <ul class="list-disc list-inside">
+                        <li>Spearheaded a team in the development of the STI Faculty Schedule Assigner and Locator, a
+                            project aimed at optimizing faculty management systems.</li>
+                        <li>Directed all aspects of the project lifecycle, including planning, design, testing, and
+                            deployment.</li>
+                        <li>Coordinated with team members, delegated tasks based on strengths, and ensured all
+                            milestones
+                            were met within deadlines.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="p-6 text-center bg-gray-900 mt-12">
+        <p>© 2025 Ace Jonas Inovero. All rights reserved.</p>
+        <div class="flex justify-center space-x-4 mt-4">
+            <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i
+                    class="fab fa-github text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i
+                    class="fab fa-linkedin text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i
+                    class="fab fa-twitter text-2xl"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init();
+        const toggleMenu = document.getElementById("toggle-menu");
+        const navLinks = document.getElementById("nav-links");
+
+        toggleMenu.addEventListener("click", () => {
+            navLinks.classList.toggle("hidden");
+            if (navLinks.classList.contains("hidden")) {
+                navLinks.classList.add("slide-up");
+                navLinks.classList.remove("slide-down");
+            } else {
+                navLinks.classList.add("slide-down");
+                navLinks.classList.remove("slide-up");
+            }
+        });
+        const options = {
+            strings: [
+                "Information Technology Student",
+                "Freelance Programmer",
+                "Software Developer",
+                "Project Manager",
+                "UI/UX Enthusiast",
+                "PHP & JavaScript Developer",
+                "Agile Project Manager"
+            ],
+            typeSpeed: 100,
+            backSpeed: 60,
+            backDelay: 1000,
+            startDelay: 500,
+            loop: true
+        };
+        const typed = new Typed("#typed", options);
+    </script>
+</body>
+
+</html>
