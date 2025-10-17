@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modern One-Page Landing — Sample</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper (Testimonials / Gallery) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!-- SweetAlert2 for nice alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root{
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #94a3b8;
+            --accent: #6ee7b7;
+            --glass: rgba(255,255,255,0.04);
+            --radius: 14px;
+        }
+        [data-theme="light"]{
+            --bg: #f7fafc;
+            --card: #ffffff;
+            --muted: #64748b;
+            --accent: #2563eb;
+            --glass: rgba(0,0,0,0.04);
+        }
+        html,body{
+            height:100%;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg,var(--bg), rgba(0,0,0,0.02));
+            color: white;
+        }
+        body { margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+        .container-lg { max-width:1140px; }
+
+        /* Top bar / Navbar */
+        .navbar{
+            backdrop-filter: blur(6px);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            border-radius: 12px;
+            padding: .5rem 1rem;
+            transition: all .2s ease;
+        }
+        .nav-link { color: var(--muted) !important; }
+        .brand { font-weight:800; letter-spacing:-0.5px; color:var(--accent); }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), #60a5fa);
+            border: none;
+            box-shadow: 0 6px 18px rgba(101, 116, 241, 0.12);
+        }
+
+        /* Hero */
+        .hero {
+            min-height:72vh;
+            display:flex;
+            align-items:center;
+            gap:2rem;
+            padding: 4rem 0;
+        }
+        .hero-card{
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: 0 6px 30px rgba(2,6,23,0.5);
+        }
+        .feature {
+            background: var(--card);
+            padding:1.2rem;
+            border-radius: 12px;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .feature:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.6); }
+
+        /* Pricing */
+        .price-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            border-radius: 14px;
+            padding: 1.6rem;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* Footer */
+        footer { padding:3rem 0; color:var(--muted); }
+
+        /* Utilities */
+        .muted { color:var(--muted); }
+        .chip { background:var(--glass); padding:.35rem .6rem; border-radius: 999px; font-size:.85rem; color:var(--muted); }
+
+        /* Responsive hero image */
+        .mock-window {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* Theme toggle */
+        .config-panel {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 1200;
+            backdrop-filter: blur(8px);
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+            padding: .6rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(2,6,23,0.45);
+        }
+
+        /* Accessibility & forms */
+        input:invalid, textarea:invalid { box-shadow: 0 0 0 4px rgba(255,0,0,0.06); }
+        .form-error { color: #ffb4b4; font-size:.9rem; }
+
+        /* Back to top */
+        #backTop {
+            position: fixed;
+            right: 18px;
+            bottom: 88px;
+            display:none;
+            z-index:1100;
+        }
+
+        @media (max-width: 991px){
+            .hero { flex-direction:column-reverse; text-align:center; }
+            .hero .row > * { text-align:left; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- NAVBAR -->
+    <nav class="navbar sticky-top container-lg my-3 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+            <div class="brand fs-4 d-flex align-items-center gap-2"><i class="fa-solid fa-rocket"></i>LaunchUI</div>
+            <span class="chip d-none d-md-inline">v1.0</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <ul class="nav d-none d-md-flex">
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+            <button class="btn btn-outline-light d-none d-md-inline" id="openDemo">Live Demo</button>
+            <button class="btn btn-primary" id="getStarted">Get Started</button>
+        </div>
+    </nav>
+
+    <main class="container-lg">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="col-md-7">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h1 class="display-5 fw-bold">Modern one-page landing, built with CDN libraries & progressive UX</h1>
+                    <p class="muted lead">A ready-to-tweak, responsive, performant and accessible template. Includes animations, forms with validation, sliders, icons and theme/configuration persistence.</p>
+
+                    <div class="mt-4 d-flex flex-wrap gap-2">
+                        <a href="#pricing" class="btn btn-primary me-2"><i class="fa-solid fa-bolt me-2"></i>Start Today</a>
+                        <a href="#features" class="btn btn-outline-light"><i class="fa-solid fa-circle-info me-2"></i>Explore features</a>
+                    </div>
+
+                    <div class="row g-3 mt-4">
+                        <div class="col-6 col-sm-4">
+                            <div class="feature d-flex align-items-start gap-3">
+                                <i class="fa-solid fa-shield-halved fa-2x text-info"></i>
+                                <div>
+                                    <strong>Secure</strong>
+                                    <div class="muted small">Built with best practices</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4">
+                            <div class="feature d-flex align-items-start gap-3">
+                                <i class="fa-solid fa-rocket fa-2x text-success"></i>
+                                <div>
+                                    <strong>Performant</strong>
+                                    <div class="muted small">CDNs & optimized assets</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <div class="feature d-flex align-items-start gap-3">
+                                <i class="fa-solid fa-sliders fa-2x text-warning"></i>
+                                <div>
+                                    <strong>Customizable</strong>
+                                    <div class="muted small">Theme & configuration panel</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="hero-card mock-window" data-aos="zoom-in" data-aos-delay="200" aria-hidden="false">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="muted small">Preview</div>
+                        <div class="d-flex gap-2">
+                            <span class="chip"><i class="fa-solid fa-circle-play"></i> Demo</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive small form -->
+                    <form id="heroForm" class="row g-2" novalidate>
+                        <div class="col-12">
+                            <label class="form-label small muted" for="name">Full name</label>
+                            <input id="name" name="name" class="form-control" placeholder="Jane Doe" required minlength="2" />
+                            <div class="form-error" data-for="name"></div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small muted" for="email">Work email</label>
+                            <input id="email" name="email" type="email" class="form-control" placeholder="name@company.com" required />
+                            <div class="form-error" data-for="email"></div>
+                        </div>
+                        <div class="col-12 d-flex gap-2">
+                            <button type="submit" class="btn btn-primary w-100">Request access</button>
+                            <button type="button" id="tryDemo" class="btn btn-outline-light">Try</button>
+                        </div>
+                    </form>
+
+                    <div class="muted small mt-3">Trusted by <strong class="text-white">2,400+</strong> teams</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES -->
+        <section id="features" class="my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 data-aos="fade-right">Features</h2>
+                <div class="muted">Everything you need, nothing you don't</div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+                    <div class="p-4 price-card h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-code fa-2x text-info"></i>
+                            <div>
+                                <h5>Frontend-first</h5>
+                                <div class="muted small">Bootstrap + utilities + components ready.</div>
+                            </div>
+                        </div>
+                        <hr class="my-3">
+                        <ul class="muted small">
+                            <li>Responsive layout</li>
+                            <li>Accessible patterns</li>
+                            <li>CDN-first for speed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="140">
+                    <div class="p-4 price-card h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-palette fa-2x text-purple"></i>
+                            <div>
+                                <h5>Custom Themes</h5>
+                                <div class="muted small">Switch light/dark and tune accents.</div>
+                            </div>
+                        </div>
+                        <hr class="my-3">
+                        <div class="muted small">Use the config panel (bottom-right) to persist settings.</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4 price-card h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-bolt fa-2x text-success"></i>
+                            <div>
+                                <h5>Performance</h5>
+                                <div class="muted small">Minimal JS, CDN resources, lazy assets.</div>
+                            </div>
+                        </div>
+                        <hr class="my-3">
+                        <div class="muted small">Prebuilt patterns for forms, sliders and modals.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section id="pricing" class="my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 data-aos="fade-right">Pricing</h2>
+                <div class="muted">Simple, transparent</div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="flip-left">
+                    <div class="price-card text-center">
+                        <div class="muted small">Starter</div>
+                        <h3 class="my-3">$0 <span class="muted small">/mo</span></h3>
+                        <ul class="muted text-start">
+                            <li>Basic features</li>
+                            <li>Email support</li>
+                            <li>Community access</li>
+                        </ul>
+                        <button class="btn btn-outline-light mt-3 w-100">Choose</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="80">
+                    <div class="price-card text-center border-2" style="border-color: var(--accent)">
+                        <div class="muted small">Pro</div>
+                        <h3 class="my-3">$29 <span class="muted small">/mo</span></h3>
+                        <ul class="muted text-start">
+                            <li>Everything in Starter</li>
+                            <li>Team seats</li>
+                            <li>Priority support</li>
+                        </ul>
+                        <button class="btn btn-primary mt-3 w-100">Get Pro</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="flip-left" data-aos-delay="160">
+                    <div class="price-card text-center">
+                        <div class="muted small">Enterprise</div>
+                        <h3 class="my-3">Custom</h3>
+                        <ul class="muted text-start">
+                            <li>SSO & SLAs</li>
+                            <li>Dedicated support</li>
+                            <li>On-prem options</li>
+                        </ul>
+                        <button class="btn btn-outline-light mt-3 w-100">Contact Sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials" class="my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 data-aos="fade-right">What teams say</h2>
+                <div class="muted">Real feedback</div>
+            </div>
+
+            <div class="swiper mySwiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide p-4">
+                        <div class="price-card">
+                            <p class="muted">"Fast to setup and easy to customize. Our landing conversion increased 34%."</p>
+                            <div class="d-flex align-items-center gap-3 mt-3">
+                                <div class="rounded-circle bg-secondary" style="width:44px;height:44px"></div>
+                                <div>
+                                    <strong>Taylor Reed</strong>
+                                    <div class="muted small">Product Lead, Acme</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide p-4">
+                        <div class="price-card">
+                            <p class="muted">"The animations and accessibility patterns are great — shipped quickly."</p>
+                            <div class="d-flex align-items-center gap-3 mt-3">
+                                <div class="rounded-circle bg-secondary" style="width:44px;height:44px"></div>
+                                <div>
+                                    <strong>Samir Khan</strong>
+                                    <div class="muted small">CTO, Nova</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pagination -->
+                <div class="swiper-pagination mt-3"></div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 data-aos="fade-right">FAQ</h2>
+                <div class="muted">Answering common questions</div>
+            </div>
+
+            <div class="accordion" id="faqAccordion" data-aos="fade-up">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="aq1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cq1" aria-expanded="false" aria-controls="cq1">
+                            Is this template accessible?
+                        </button>
+                    </h2>
+                    <div id="cq1" class="accordion-collapse collapse" aria-labelledby="aq1" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body muted">It follows common accessibility patterns and uses semantic HTML and aria attributes.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="aq2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cq2" aria-expanded="false" aria-controls="cq2">
+                            Can I use it in production?
+                        </button>
+                    </h2>
+                    <div id="cq2" class="accordion-collapse collapse" aria-labelledby="aq2" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body muted">Yes — replace sample content, wire up your backend, and audit security for your needs.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="my-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 data-aos="fade-right">Contact & Newsletter</h2>
+                <div class="muted">We'll get back within 24 hours</div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-up">
+                    <form id="contactForm" class="p-4 price-card" novalidate>
+                        <div class="mb-3">
+                            <label for="c_name" class="form-label small muted">Name</label>
+                            <input id="c_name" name="name" class="form-control" required minlength="2">
+                            <div class="form-error" data-for="c_name"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="c_email" class="form-label small muted">Email</label>
+                            <input id="c_email" name="email" type="email" class="form-control" required>
+                            <div class="form-error" data-for="c_email"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="c_message" class="form-label small muted">Message</label>
+                            <textarea id="c_message" name="message" rows="4" class="form-control" required minlength="10"></textarea>
+                            <div class="form-error" data-for="c_message"></div>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">Send message</button>
+                            <button type="reset" class="btn btn-outline-light">Reset</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-4 price-card">
+                        <h5>Subscribe to our newsletter</h5>
+                        <p class="muted small">No spam. Unsubscribe anytime.</p>
+
+                        <form id="newsletterForm" class="d-flex gap-2" novalidate>
+                            <input id="n_email" type="email" class="form-control" placeholder="you@company.com" required>
+                            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-envelope"></i></button>
+                        </form>
+
+                        <hr class="my-3">
+                        <div class="muted small">
+                            <i class="fa-solid fa-phone"></i> +1 (555) 123-4567 &nbsp; • &nbsp;
+                            <i class="fa-solid fa-location-dot"></i> Remote
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="#" class="muted me-2"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="muted me-2"><i class="fa-brands fa-github"></i></a>
+                            <a href="#" class="muted"><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to top -->
+    <button id="backTop" class="btn btn-primary rounded-circle" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+
+    <!-- Configuration panel -->
+    <div class="config-panel" role="region" aria-label="Configuration">
+        <div class="d-flex flex-column gap-2">
+            <button id="toggleTheme" class="btn btn-sm btn-outline-light" title="Toggle theme"><i class="fa-solid fa-sun"></i></button>
+            <select id="accentSelect" class="form-select form-select-sm" title="Accent color">
+                <option value="#6ee7b7" selected>Green</option>
+                <option value="#60a5fa">Blue</option>
+                <option value="#fca5a5">Coral</option>
+                <option value="#fbbc04">Yellow</option>
+            </select>
+            <button id="resetConfig" class="btn btn-sm btn-outline-light">Reset</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="container-lg">
+        <div class="d-flex justify-content-between align-items-center border-top pt-4">
+            <div class="muted small">&copy; <span id="year"></span> LaunchUI. All rights reserved.</div>
+            <div class="muted small">Made with <i class="fa-solid fa-heart text-danger"></i></div>
+        </div>
+    </footer>
+
+    <!-- Scripts: jQuery, Bootstrap, AOS, Swiper, GSAP -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
+    <script>
+        // Basic utilities & initializations
+        document.getElementById('year').textContent = new Date().getFullYear();
+        AOS.init({ once: true, duration: 700 });
+
+        // Swiper setup
+        const swiper = new Swiper('.mySwiper', {
+            loop: true,
+            autoplay: { delay: 4200 },
+            pagination: { el: '.swiper-pagination', clickable: true },
+        });
+
+        // GSAP small intro
+        gsap.from('.hero h1', { y: 20, opacity: 0, duration: .9, delay: .2, ease: "power3.out" });
+
+        // Theme & Accent config with persistence
+        const body = document.body;
+        const toggleThemeBtn = document.getElementById('toggleTheme');
+        const accentSelect = document.getElementById('accentSelect');
+        const resetConfig = document.getElementById('resetConfig');
+
+        const CONFIG_KEY = "landing_config_v1";
+
+        function loadConfig(){
+            const json = localStorage.getItem(CONFIG_KEY);
+            if(!json) return;
+            try{
+                const cfg = JSON.parse(json);
+                if(cfg.theme) body.setAttribute('data-theme', cfg.theme);
+                if(cfg.accent) document.documentElement.style.setProperty('--accent', cfg.accent);
+            }catch(e){}
+        }
+
+        function saveConfig(){
+            const cfg = {
+                theme: body.getAttribute('data-theme'),
+                accent: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()
+            };
+            localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+        }
+
+        toggleThemeBtn.addEventListener('click', () => {
+            const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', next);
+            saveConfig();
+            AOS.refresh();
+        });
+
+        accentSelect.addEventListener('change', (e) => {
+            document.documentElement.style.setProperty('--accent', e.target.value);
+            saveConfig();
+        });
+
+        resetConfig.addEventListener('click', () => {
+            localStorage.removeItem(CONFIG_KEY);
+            document.documentElement.style.setProperty('--accent', getComputedStyle(document.documentElement).getPropertyValue('--accent') );
+            body.setAttribute('data-theme','dark');
+            accentSelect.value = '#6ee7b7';
+            Swal.fire({ icon:'success', title:'Configuration reset', timer:1400, showConfirmButton:false });
+        });
+
+        loadConfig();
+
+        // Back to top
+        const backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 300) backTop.style.display = 'block'; else backTop.style.display = 'none';
+        });
+        backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+        // Simple validation helpers
+        function showError(el, message){
+            const target = document.querySelector(`.form-error[data-for="${el.id}"]`);
+            if(target) target.textContent = message || '';
+        }
+
+        function clearErrors(form){
+            form.querySelectorAll('.form-error').forEach(e => e.textContent = '');
+        }
+
+        function validateForm(form){
+            clearErrors(form);
+            let ok = true;
+            [...form.elements].forEach(el => {
+                if(!el.name) return;
+                if(el.willValidate && !el.checkValidity()){
+                    ok = false;
+                    const msg = el.validationMessage || 'Invalid value';
+                    showError(el, msg);
+                }
+            });
+            return ok;
+        }
+
+        // Hero form handling (demo)
+        document.getElementById('heroForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            if(!validateForm(this)) return;
+            // Simulate server call
+            Swal.fire({ icon:'success', title:'Request received', text:'We will contact you shortly', timer:1600, showConfirmButton:false });
+            this.reset();
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            if(!validateForm(this)) return;
+            // Example: replace with actual AJAX POST
+            Swal.fire({ icon:'success', title:'Message sent', timer:1400, showConfirmButton:false });
+            this.reset();
+        });
+
+        // Newsletter
+        document.getElementById('newsletterForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const email = document.getElementById('n_email');
+            if(!email.checkValidity()){ showError(email, email.validationMessage); return; }
+            showError(email, '');
+            Swal.fire({ icon:'success', title:'Subscribed', text: email.value, timer:1400, showConfirmButton:false });
+            this.reset();
+        });
+
+        // Demo buttons
+        document.getElementById('openDemo').addEventListener('click', () => {
+            Swal.fire({
+                title: 'Live Demo',
+                html: '<div class="muted">This is a demo modal. Replace with your app preview or embed an iframe.</div>',
+                showCloseButton:true,
+                showConfirmButton:false
+            });
+        });
+        document.getElementById('tryDemo').addEventListener('click', () => {
+            Swal.fire({ icon:'info', title:'Demo mode', text:'Interactive demo launched', timer:1400, showConfirmButton:false });
+        });
+
+        // Accessibility: smooth internal link scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e){
+                const tgt = document.querySelector(this.getAttribute('href'));
+                if(tgt){ e.preventDefault(); tgt.scrollIntoView({behavior:'smooth', block:'start'}); }
+            });
+        });
+
+        // Minimal client-side config: set accent select to current computed value on load
+        (function syncAccentSelect(){
+            const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+            if(accent) accentSelect.value = accent;
+        })();
+
+        // Basic keyboard shortcut: T toggles theme
+        window.addEventListener('keydown', (e) => {
+            if(e.key.toLowerCase() === 't' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                toggleThemeBtn.click();
+            }
+        });
+    </script>
+</body>
+</html></div></form></h2></div>
